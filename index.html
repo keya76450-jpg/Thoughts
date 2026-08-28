@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Interactive Quiz</title>
+    <title>Only for you</title>
     <style>
         * {
             margin: 0;
@@ -74,7 +74,7 @@
 
         .screen {
             display: none;
-            animation: fadeIn 0.5s ease forward;
+            animation: fadeIn 0.5s ease forwards;
         }
 
         .screen.active {
@@ -86,16 +86,55 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* Panda Avatar */
-        .panda-box {
-            font-size: 80px;
-            margin-bottom: 15px;
-            animation: bounce 2s infinite;
+        /* Panda Container with Two Bears */
+        .panda-container {
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            gap: 10px;
+            margin-bottom: 20px;
+            height: 100px;
         }
 
-        @keyframes bounce {
+        .panda-bear {
+            font-size: 70px;
+            line-height: 1;
+            display: inline-block;
+            transition: transform 0.3s ease;
+        }
+
+        /* Screen-specific avatar animations */
+        .bounce .panda-bear {
+            animation: pandaBounce 2s infinite ease-in-out;
+        }
+        .bounce .panda-bear:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .shy .panda-bear:nth-child(1) { transform: translateX(15px) rotate(10deg); }
+        .shy .panda-bear:nth-child(2) { transform: translateX(-15px) rotate(-10deg); }
+
+        .sad .panda-bear {
+            animation: pandaSad 1.5s infinite ease-in-out;
+        }
+
+        .love .panda-bear {
+            animation: pandaLove 1.2s infinite alternate ease-in-out;
+        }
+
+        @keyframes pandaBounce {
             0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
+            50% { transform: translateY(-15px); }
+        }
+
+        @keyframes pandaSad {
+            0%, 100% { transform: translateY(0) scaleY(1); }
+            50% { transform: translateY(5px) scaleY(0.85); }
+        }
+
+        @keyframes pandaLove {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.1); }
         }
 
         h2 {
@@ -167,7 +206,10 @@
     <div class="card">
         <!-- SCREEN 1 -->
         <div class="screen active" id="screen1">
-            <div class="panda-box">🐼</div>
+            <div class="panda-container bounce">
+                <span class="panda-bear">🐻</span>
+                <span class="panda-bear">🐼</span>
+            </div>
             <h2>Are you prime minister?</h2>
             <div class="btn-container">
                 <button class="btn-yes" onclick="goToScreen('screen2A')">Yes</button>
@@ -177,7 +219,10 @@
 
         <!-- SCREEN 2A (If Yes) -->
         <div class="screen" id="screen2A">
-            <div class="panda-box">Thinking... 🐼</div>
+            <div class="panda-container shy">
+                <span class="panda-bear">🐻</span>
+                <span class="panda-bear">🐼</span>
+            </div>
             <h2>How much work does a prime minister do in 24 hours?</h2>
             <input type="text" id="pmWorkInput" placeholder="Type your answer here...">
             <button class="btn-next" onclick="goToScreen('screen3')">Next</button>
@@ -185,14 +230,20 @@
 
         <!-- SCREEN 2B (If No) -->
         <div class="screen" id="screen2B">
-            <div class="panda-box">🤔 🐼</div>
+            <div class="panda-container sad">
+                <span class="panda-bear">🐻</span>
+                <span class="panda-bear">🐼</span>
+            </div>
             <h2>Why are you this much busy?</h2>
             <button class="btn-next" onclick="goToScreen('screen3')">Next</button>
         </div>
 
         <!-- SCREEN 3 -->
         <div class="screen" id="screen3">
-            <div class="panda-box">❓ 🐼</div>
+            <div class="panda-container bounce">
+                <span class="panda-bear">🐻</span>
+                <span class="panda-bear">🐼</span>
+            </div>
             <h2>Should I Miss you or not?</h2>
             <div class="btn-container">
                 <button class="btn-yes" onclick="goToScreen('screen4A')">Yes</button>
@@ -202,21 +253,30 @@
 
         <!-- SCREEN 4A (If Yes) -->
         <div class="screen" id="screen4A">
-            <div class="panda-box">💖 🐼</div>
+            <div class="panda-container love">
+                <span class="panda-bear">💝</span>
+                <span class="panda-bear">🐼</span>
+            </div>
             <h2>Why? Do you love me?</h2>
             <button class="btn-next" onclick="goToScreen('screenFinal')">Next</button>
         </div>
 
         <!-- SCREEN 4B (If No) -->
         <div class="screen" id="screen4B">
-            <div class="panda-box">🥺 🐼</div>
+            <div class="panda-container sad">
+                <span class="panda-bear">🐻</span>
+                <span class="panda-bear">🐼</span>
+            </div>
             <h2>I knew it your answer will rude, by the way i think i should.</h2>
             <button class="btn-next" onclick="goToScreen('screenFinal')">Next</button>
         </div>
 
         <!-- FINAL SCREEN -->
         <div class="screen" id="screenFinal">
-            <div class="panda-box">💀 🐼</div>
+            <div class="panda-container sad">
+                <span class="panda-bear">🪦</span>
+                <span class="panda-bear">🐼</span>
+            </div>
             <h2>Since you are rude, you should Rest in Peace</h2>
         </div>
     </div>
@@ -224,11 +284,9 @@
     <script>
         // Screen Navigation Logic
         function goToScreen(screenId) {
-            // Hide all screens
             document.querySelectorAll('.screen').forEach(screen => {
                 screen.classList.remove('active');
             });
-            // Show the target screen
             document.getElementById(screenId).classList.add('active');
         }
 
