@@ -22,7 +22,7 @@
             position: relative;
         }
 
-        /* Romantic Ambient Background Floating Hearts */
+        /* Romantic Background Floating Hearts */
         .hearts-bg {
             position: absolute;
             width: 100%;
@@ -80,7 +80,6 @@
             background: #4a1525;
             border-radius: 50%;
             position: absolute;
-            transition: all 0.05s ease;
         }
 
         /* Top Love Badge */
@@ -117,18 +116,19 @@
             border: 2px solid rgba(255, 255, 255, 0.7);
         }
 
+        /* FIXED SCREEN STATE CONTROL */
         .screen {
-            display: none;
+            display: none !important; /* Forces hidden screens to hide absolutely */
         }
 
         .screen.active {
-            display: block;
-            animation: smoothFade 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+            display: block !important; /* Forces active screen to show absolutely */
+            animation: smoothFade 0.4s ease-out forwards;
         }
 
         @keyframes smoothFade {
-            from { opacity: 0; transform: scale(0.96) translateY(12px); }
-            to { opacity: 1; transform: scale(1) translateY(0); }
+            from { opacity: 0; transform: scale(0.96); }
+            to { opacity: 1; transform: scale(1); }
         }
 
         /* Bear & Panda Cute Layout Group */
@@ -197,10 +197,9 @@
 
         input[type="text"]:focus {
             border-color: #ff4757;
-            box-shadow: 0 0 10px rgba(255, 71, 87, 0.15);
         }
 
-        /* Buttons Style Layout */
+        /* Buttons Layout */
         .btn-container {
             display: flex;
             justify-content: center;
@@ -214,7 +213,7 @@
             font-size: 16px;
             font-weight: 700;
             cursor: pointer;
-            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transition: transform 0.2s;
             box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
         }
 
@@ -225,8 +224,7 @@
         }
 
         .btn-yes:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 22px rgba(255, 71, 87, 0.45);
+            transform: scale(1.05);
         }
 
         .btn-no {
@@ -236,8 +234,7 @@
         }
 
         .btn-no:hover {
-            transform: translateY(-2px);
-            background: #e0e0e0;
+            transform: scale(1.03);
         }
 
         .btn-next {
@@ -247,14 +244,13 @@
         }
 
         .btn-next:hover {
-            box-shadow: 0 8px 22px rgba(46, 213, 115, 0.45);
-            transform: translateY(-3px);
+            transform: scale(1.03);
         }
     </style>
 </head>
 <body>
 
-    <!-- Romantic Layer Items -->
+    <!-- Floating Background Hearts -->
     <div class="hearts-bg">
         <div class="floating-heart" style="left: 8%; width: 22px; height: 22px; animation-delay: 0s; animation-duration: 14s;"></div>
         <div class="floating-heart" style="left: 28%; width: 38px; height: 38px; animation-delay: 2s; animation-duration: 11s;"></div>
@@ -262,7 +258,7 @@
         <div class="floating-heart" style="left: 82%; width: 28px; height: 28px; animation-delay: 1.5s; animation-duration: 13s;"></div>
     </div>
 
-    <!-- Live Eye Tracking Layer -->
+    <!-- Background Tracking Eyes -->
     <div class="eye-background">
         <div class="eye"><div class="pupil"></div></div>
         <div class="eye"><div class="pupil"></div></div>
@@ -307,3 +303,8 @@
 
         <!-- SCREEN 3 -->
         <div class="screen" id="screen3">
+            <div class="panda-container bounce">
+                <span class="panda-bear">🐻</span>
+                <span class="panda-bear">🐼</span>
+            </div>
+            <h2>Should I Miss you or not? 🥺👉👈</h2>
