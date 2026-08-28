@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Only For You My Love ❤️</title>
+    <title>A Special Surprise For You ❤️</title>
     <style>
         * {
             margin: 0;
@@ -17,284 +17,295 @@
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            background: linear-gradient(135deg, #fff0f5 0%, #ffe4e1 100%);
+            background: linear-gradient(125deg, #ff9a9e, #fecfef, #a1c4fd, #c2e9fb);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
             overflow: hidden;
             position: relative;
         }
 
-        /* Smooth Floating Heart Animations */
-        .heart-particle {
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Eye casting background effect */
+        .eye-background {
             position: absolute;
-            color: rgba(255, 105, 180, 0.3);
-            font-size: 24px;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             pointer-events: none;
-            bottom: -50px;
-            animation: floatUp 8s linear infinite;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            opacity: 0.2;
+            z-index: 1;
         }
 
-        @keyframes floatUp {
-            0% { transform: translateY(0) translateX(0) rotate(0deg); opacity: 1; }
-            100% { transform: translateY(-110vh) translateX(100px) rotate(360deg); opacity: 0; }
+        .eye {
+            width: 90px;
+            height: 90px;
+            background: #fff;
+            border-radius: 50%;
+            position: relative;
+            border: 4px solid #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: inset 0 5px 15px rgba(0,0,0,0.1);
         }
 
-        /* Top Love Badge */
-        .love-badge {
-            background: linear-gradient(45deg, #ff69b4, #ff1493);
-            color: white;
-            padding: 8px 24px;
-            border-radius: 20px;
-            font-size: 14px;
-            font-weight: bold;
-            display: inline-block;
-            margin-bottom: 20px;
-            box-shadow: 0 4px 12px rgba(255, 20, 147, 0.3);
-            animation: heartBeat 1.5s infinite alternate;
+        .pupil {
+            width: 35px;
+            height: 35px;
+            background: #222;
+            border-radius: 50%;
+            position: absolute;
+            transition: transform 0.1s ease-out;
         }
 
-        @keyframes heartBeat {
-            to { transform: scale(1.08); }
-        }
-
-        /* Romantic Main Box Card */
+        /* Premium Card Container */
         .card {
-            background: rgba(255, 255, 255, 0.96);
-            padding: 40px 30px;
-            border-radius: 30px;
-            box-shadow: 0 15px 35px rgba(255, 105, 180, 0.2);
+            background: rgba(255, 255, 255, 0.88);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            padding: 35px;
+            border-radius: 24px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            border: 1px solid rgba(255, 255, 255, 0.5);
             text-align: center;
             width: 90%;
             max-width: 440px;
             z-index: 10;
-            border: 3px solid #ffb6c1;
             position: relative;
         }
 
-        /* Eye Casting Component Inside Card (Safe from blocking clicks) */
-        .eye-container {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            margin-bottom: 15px;
-        }
-
-        .eye {
-            width: 50px;
-            height: 50px;
-            background: white;
-            border-radius: 50%;
-            border: 3px solid #ff69b4;
-            position: relative;
-            box-shadow: inset 0 2px 5px rgba(0,0,0,0.1);
-        }
-
-        .pupil {
-            width: 20px;
-            height: 20px;
-            background: #ff1493;
-            border-radius: 50%;
-            position: absolute;
-            left: 50%;
-            top: 50%;
-            transform: translate(-50%, -50%);
-        }
-
-        /* Core Screen Switching Logic */
         .screen {
             display: none;
+            animation: fadeIn 0.5s ease-in-out forwards;
         }
 
         .screen.active {
             display: block;
-            animation: fadeIn 0.4s ease-out;
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: scale(0.95); }
-            to { opacity: 1; transform: scale(1); }
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
-        /* Panda Bear Emoji Header */
+        /* Panda Avatar Animation */
         .panda-box {
-            font-size: 70px;
+            font-size: 85px;
             margin-bottom: 20px;
-            display: block;
+            display: inline-block;
+            animation: bounce 2s infinite ease-in-out;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0) scale(1); }
+            50% { transform: translateY(-12px) scale(1.03); }
         }
 
         h2 {
-            color: #d11141;
+            color: #333;
             margin-bottom: 25px;
             font-size: 22px;
-            line-height: 1.4;
+            line-height: 1.5;
+            font-weight: 600;
         }
 
+        /* Input styling */
         input[type="text"] {
             width: 100%;
-            padding: 14px 20px;
-            border: 2px solid #ffb6c1;
-            border-radius: 15px;
+            padding: 14px;
+            border: 2px solid #fecfef;
+            border-radius: 12px;
             margin-bottom: 25px;
             outline: none;
             font-size: 16px;
-            color: #d11141;
-            text-align: center;
+            transition: border-color 0.3s;
         }
 
-        /* Lovely Button Styling Layout */
+        input[type="text"]:focus {
+            border-color: #ff758c;
+        }
+
+        /* Buttons Layout */
         .btn-container {
             display: flex;
             justify-content: center;
             gap: 15px;
+            flex-wrap: wrap;
         }
 
         button {
-            padding: 14px 28px;
+            padding: 12px 30px;
             border: none;
             border-radius: 50px;
             font-size: 16px;
             font-weight: bold;
             cursor: pointer;
-            transition: background 0.2s, transform 0.1s;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+
+        button:active {
+            transform: scale(0.96);
         }
 
         .btn-yes {
-            background: linear-gradient(45deg, #ff69b4, #ff1493);
+            background: linear-gradient(135deg, #ff758c 0%, #ff7eb3 100%);
             color: white;
-            flex: 1;
         }
 
         .btn-yes:hover {
-            background: #ff1493;
-            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 117, 140, 0.4);
         }
 
         .btn-no {
-            background: #f0f0f0;
-            color: #666;
-            flex: 1;
-        }
-
-        .btn-no:hover {
-            background: #e0e0e0;
+            background: #8e9aaf;
+            color: white;
         }
 
         .btn-next {
-            background: linear-gradient(45deg, #32cd32, #228b22);
-            color: white;
+            background: linear-gradient(135deg, #a1c4fd 0%, #c2e9fb 100%);
+            color: #333;
             width: 100%;
+        }
+
+        /* Beautiful Dynamic End Text */
+        .final-text {
+            font-size: 18px;
+            color: #444;
+            line-height: 1.6;
+            white-space: pre-line;
+        }
+
+        .highlight-text {
+            color: #ff4d6d;
+            font-weight: bold;
+            display: block;
+            margin-bottom: 20px;
         }
     </style>
 </head>
 <body>
 
-    <!-- Dynamic Heart Animation Background Elements -->
-    <div class="heart-particle" style="left: 10%; animation-delay: 0s;">❤️</div>
-    <div class="heart-particle" style="left: 30%; animation-delay: 2s; animation-duration: 6s;">💖</div>
-    <div class="heart-particle" style="left: 50%; animation-delay: 4s;">💝</div>
-    <div class="heart-particle" style="left: 70%; animation-delay: 1s; animation-duration: 10s;">❤️</div>
-    <div class="heart-particle" style="left: 90%; animation-delay: 3s;">💕</div>
+    <!-- Interactive Eye Background -->
+    <div class="eye-background">
+        <div class="eye"><div class="pupil"></div></div>
+        <div class="eye"><div class="pupil"></div></div>
+    </div>
 
     <div class="card">
-        <!-- Love Label Tag -->
-        <div class="love-badge">✨ Only For My Man ❤️ ✨</div>
-
-        <!-- Eye Tracking Module -->
-        <div class="eye-container">
-            <div class="eye"><div class="pupil"></div></div>
-            <div class="eye"><div class="pupil"></div></div>
-        </div>
-
-        <!-- SCREEN 1 -->
+        <!-- SCREEN 1: Are you prime minister? -->
         <div class="screen active" id="screen1">
-            <span class="panda-box">🐻🐼</span>
-            <h2>Are you prime minister? 🤔💼</h2>
+            <div class="panda-box">🐼</div>
+            <h2>Are you primeminister?</h2>
             <div class="btn-container">
-                <button class="btn-yes" onclick="goToScreen('screen2A')">Yes 😎</button>
-                <button class="btn-no" onclick="goToScreen('screen2B')">No 🤷‍♂️</button>
+                <button class="btn-yes" onclick="goToScreen('screen2A')">Yes</button>
+                <button class="btn-no" onclick="goToScreen('screen2B')">No</button>
             </div>
         </div>
 
-        <!-- SCREEN 2A (If Yes) -->
+        <!-- SCREEN 2A: If Yes to Prime Minister -->
         <div class="screen" id="screen2A">
-            <span class="panda-box">🐻🐼⏳</span>
-            <h2>How much work does a prime minister do in 24 hours? ⏳👔</h2>
-            <input type="text" id="pmWorkInput" placeholder="Tell me your secret schedule... 👀">
-            <button class="btn-next" onclick="goToScreen('screen3')">Next Step ✨</button>
+            <div class="panda-box">📝 🐼</div>
+            <h2>How much work does a primeminister do in 24 hours?</h2>
+            <input type="text" placeholder="Type your answer here...">
+            <button class="btn-next" onclick="goToScreen('screen3')">Next</button>
         </div>
 
-        <!-- SCREEN 2B (If No) -->
+        <!-- SCREEN 2B: If No to Prime Minister -->
         <div class="screen" id="screen2B">
-            <span class="panda-box">🐻🐼🤷</span>
-            <h2>Why are you this much busy? 🧐📱</h2>
-            <button class="btn-next" onclick="goToScreen('screen3')">Tell me why... 💖</button>
+            <div class="panda-box">❓ 🐼</div>
+            <h2>Why are you this much busy?</h2>
+            <input type="text" placeholder="Type your answer here...">
+            <button class="btn-next" onclick="goToScreen('screen3')">Next</button>
         </div>
 
-        <!-- SCREEN 3 -->
+        <!-- SCREEN 3: Should I Miss you or not? -->
         <div class="screen" id="screen3">
-            <span class="panda-box">🐻🐼🥺</span>
-            <h2>Should I Miss you or not? 🥺👉👈</h2>
+            <div class="panda-box">🤔 🐼</div>
+            <h2>Should I Miss you or not?</h2>
             <div class="btn-container">
-                <button class="btn-yes" onclick="goToScreen('screen4A')">Yes, please! ❤️</button>
-                <button class="btn-no" onclick="goToScreen('screen4B')">No 💔</button>
+                <button class="btn-yes" onclick="goToScreen('screen4A')">Yes</button>
+                <button class="btn-no" onclick="goToScreen('screen4B')">No</button>
             </div>
         </div>
 
-        <!-- SCREEN 4A (If Yes to Miss You) -->
+        <!-- SCREEN 4A: If Yes to Miss You -->
         <div class="screen" id="screen4A">
-            <span class="panda-box">🐻🐼🌸</span>
-            <h2>Why? Do you love me? 😏🌸</h2>
+            <div class="panda-box">👀 🐼</div>
+            <h2>why ? do you love me?</h2>
             <div class="btn-container">
-                <button class="btn-yes" onclick="goToScreen('screen5A')">Yes, infinitely! 😍</button>
-                <button class="btn-no" onclick="goToScreen('screenFinal')">No 🙃</button>
+                <button class="btn-yes" onclick="showFinal(true)">Yes</button>
+                <button class="btn-no" onclick="showFinal(false)">No</button>
             </div>
         </div>
 
-        <!-- SCREEN 4B (If No to Miss You) -->
+        <!-- SCREEN 4B: If No to Miss You -->
         <div class="screen" id="screen4B">
-            <span class="panda-box">🐻🐼😢</span>
-            <h2>I knew it your answer will rude, by the way i think i should. 😢🌧️</h2>
-            <button class="btn-next" onclick="goToScreen('screenFinal')">See Next... ✨</button>
-        </div>
-
-        <!-- SCREEN 5A (If Yes to Love Me) -->
-        <div class="screen" id="screen5A">
-            <span class="panda-box">🐻🐼❄️</span>
-            <h2>Let's go! Winter is coming! I think January will be the best month ❄️☃️✈️</h2>
-            <button class="btn-next" onclick="goToScreen('screenFinal')">Continue... 💞</button>
+            <div class="panda-box">🥺 🐼</div>
+            <h2>i knew it your answer will rude, by the way i think i should.</h2>
+            <button class="btn-next" onclick="showFinal(false)">Next</button>
         </div>
 
         <!-- FINAL SCREEN -->
         <div class="screen" id="screenFinal">
-            <span class="panda-box">🐻🐼🏔️🚢</span>
-            <h2>Btw so sweet of you. You are the gigantic iceberg which crashed Titanic(Keya) 🏔️❤️🚢💥</h2>
+            <div class="panda-box">❤️ 🐼</div>
+            <div class="final-text" id="finalTextContent"></div>
         </div>
     </div>
 
     <script>
-        // BULLETPROOF SWITCH SYSTEM
+        // Screen Navigation Logic
         function goToScreen(screenId) {
-            // Hide all screen blocks completely
-            var allScreens = document.getElementsByClassName('screen');
-            for (var i = 0; i < allScreens.length; i++) {
-                allScreens[i].style.display = 'none';
-                allScreens[i].classList.remove('active');
-            }
-            
-            // Activate and force render target screen block
-            var activeScreen = document.getElementById(screenId);
-            if (activeScreen) {
-                activeScreen.style.display = 'block';
-                activeScreen.classList.add('active');
-            }
+            document.querySelectorAll('.screen').forEach(screen => {
+                screen.classList.remove('active');
+            });
+            document.getElementById(screenId).classList.add('active');
         }
 
-        // Safe Eye Tracking Script
-        document.addEventListener('mousemove', function(e) {
-            var pupils = document.querySelectorAll('.pupil');
-            pupils.forEach(function(pupil) {
-                var eye = pupil.parentElement;
-                var rect = eye.getBoundingClientRect();
+        // Show Final responses exactly how you requested
+        function showFinal(saidYesToLove) {
+            document.querySelectorAll('.screen').forEach(screen => {
+                screen.classList.remove('active');
+            });
+
+            let finalMessage = "";
+            
+            // If he clicked Yes to "why ? do you love me?"
+            if (saidYesToLove) {
+                finalMessage = `<span class="highlight-text">let's go! Winter is coming! i think January will be the best month</span>\n`;
+            }
+            
+            // Main grand ending message
+            finalMessage += `Btw so sweet of you. You are the gigantic iceberg which crashed the Titanic(Keya)`;
+
+            document.getElementById('finalTextContent').innerHTML = finalMessage;
+            document.getElementById('screenFinal').classList.add('active');
+        }
+
+        // Eye-tracking script
+        document.addEventListener('mousemove', (e) => {
+            const pupils = document.querySelectorAll('.pupil');
+            pupils.forEach(pupil => {
+                const eye = pupil.parentElement;
+                const rect = eye.getBoundingClientRect();
+                const eyeX = rect.left + rect.width / 2;
+                const eyeY = rect.top + rect.height / 2;
                 
-                // Get Center coordinates of the tracking eye
-                var eyeCenterX = rect.left + rect.width / 2;
-                var eyeCenterY = rect.top + rect.height / 2;
+                const angle = Math.atan2(e.clientX - eyeX, e.clientY - eyeY);
+                const maxMovement = 18;
                 
+                const distance = Math.min(maxMovement, Math.hypot(e.clientX - eyeX, e.clientY - eyeY) / 12);
+                
+                const x = distance * Math.sin(angle);
+                const y = distance * Math.cos(angle);
+                
+                pupil.style.transform = `translate(${x}px, ${y}px)`;
